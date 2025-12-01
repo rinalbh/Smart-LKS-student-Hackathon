@@ -1,0 +1,23 @@
+{
+  "students": [
+    {
+      "id": "BR001",
+      "name": "Басыров Риналь",
+      "avatar": "БР",
+      "group": "ИКБО-01-21",
+      "email": "basyrov@edu.mirea.ru",
+      "specialization": "Информационная безопасность",
+      "courseProgress": [
+        {"courseId": 1, "progress": 85, "grade": 4.5},
+        {"courseId": 2, "progress": 72, "grade": 4.2},
+        {"courseId": 3, "progress": 45, "grade": 3.8}
+      ],
+      "weeklyLoad": 34,
+      "attendance": 92,
+      "activityScore": 88,
+      "overallProgress": 67,
+      "deadlinesThisWeek": 3,
+      "burnoutRisk": 25
+    }
+  ]
+}

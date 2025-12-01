@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СДО РТУ МИРЭА by TRISKA</title>
+    <style>
+        :root {
+            --primary-color: #1a3d7c;
+            --secondary-color: #e30613;
+            --accent-color: #00a6e2;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --success-color: #00b894;
+            --warning-color: #fdcb6e;
+            --danger-color: #e17055;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-cover {
+            background: linear-gradient(rgba(26, 61, 124, 0.85), rgba(26, 61, 124, 0.9)), 
+                        url('https://thb.tildacdn.pub/tild3736-3037-4334-b863-353562353039/-/resize/20x/d946dbce69a24e0288d5.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+        }
+        
+        .university-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 8px 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .university-badge:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .header-cover h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-cover p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo-subtext {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-top: -3px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .user-menu:hover {
+            background-color: #e9ecef;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px 0;
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+        
+        .sidebar-header {
+            padding: 0 25px 15px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .session-countdown {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 15px;
+        }
+        
+        .countdown-title {
+            font-size: 1rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .countdown-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+        }
+        
+        .circle-bg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .circle-progress {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-color) 0% 25%, #e9ecef 25% 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .circle-inner {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .days-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .days-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .countdown-note {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-item {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .sidebar-link:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .sidebar-link.active {
+            background-color: rgba(26, 61, 124, 0.05);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .sidebar-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: var(--primary-color);
+        }
+        
+        .sidebar-icon {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+        
+        .content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .section-subtitle {
+            color: #6c757d;
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #152a5c;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .metric-card h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .load-indicator {
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin: 20px 0 10px 0;
+            overflow: hidden;
+        }
+        
+        .load-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color), var(--warning-color), var(--danger-color));
+            border-radius: 10px;
+        }
+        
+        .load-markers {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .course-card {
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: white;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .course-image {
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .course-instructor {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            margin-bottom: 15px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .progress-divisions {
+            display: flex;
+            gap: 2px;
+            height: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .division {
+            flex: 1;
+            height: 100%;
+            background-color: #e9ecef;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+        
+        .division.filled {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .group-progress-container {
+            margin-bottom: 15px;
+        }
+        
+        .notifications {
+            margin-top: 30px;
+        }
+        
+        .notification-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background-color: #f8f9fa;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--warning-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .notification-icon.assignment {
+            background-color: var(--accent-color);
+        }
+        
+        .notification-icon.exam {
+            background-color: var(--danger-color);
+        }
+        
+        .notification-icon.deadline {
+            background-color: var(--secondary-color);
+        }
+        
+        .notification-icon.grade {
+            background-color: var(--success-color);
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .notification-desc {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .notification-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .notification-course {
+            color: var(--primary-color);
+            font-weight: 500;
+            background-color: rgba(26, 61, 124, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        
+        .notification-time {
+            color: #adb5bd;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: #adb5bd;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+        
+        .notification-item:hover .notification-close {
+            opacity: 1;
+        }
+        
+        .notification-close:hover {
+            background-color: #e9ecef;
+            color: var(--danger-color);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-desc {
+            color: #adb5bd;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .footer-heading {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 12px;
+        }
+        
+        .footer-link a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link a:hover {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                margin: 5px 10px 5px 0;
+            }
+            
+            .user-menu {
+                margin-top: 15px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .content-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-cover {
+                padding: 60px 0;
+            }
+            
+            .header-cover h1 {
+                font-size: 2rem;
+            }
+            
+            .header-cover p {
+                font-size: 1rem;
+            }
+        }
+        
+        .favorite-star {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .favorite-star.favorite {
+            color: #ffd700;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-cover">
+        <div class="container">
+            <a href="https://www.mirea.ru" class="university-badge" target="_blank">РТУ МИРЭА</a>
+            <h1>СДО РТУ МИРЭА by TRISKA</h1>
+            <p id="quote-text">Загрузка...</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="https://www.mirea.ru" class="logo" target="_blank">
+                <div class="logo-icon">Т</div>
+                <div>
+                    <div class="logo-text">СДО РТУ МИРЭА</div>
+                    <div class="logo-subtext">by TRISKA</div>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="https://online-edu.mirea.ru/" class="nav-link active">Главная</a></li>
+                <li class="nav-item"><a href="https://lk.mirea.ru/learning_program/plan/" class="nav-link">Мои курсы</a></li>
+                <li class="nav-item"><a href="https://www.mirea.ru/schedule/?ysclid=mie7gjuvkz817045686" class="nav-link">Расписание</a></li>
+                <li class="nav-item"><a href="https://online-edu.mirea.ru/" class="nav-link">Задания</a></li>
+                <li class="nav-item"><a href="https://online-edu.mirea.ru/" class="nav-link">Оценки</a></li>
+            </ul>
+            <a href="#" class="user-menu">
+                <div class="user-avatar" id="userAvatar">З</div>
+                <div class="user-name" id="userName">Загрузка...</div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <aside class="sidebar">
+            <div class="session-countdown">
+                <div class="countdown-title">До начала сессии</div>
+                <div class="countdown-circle">
+                    <div class="circle-bg"></div>
+                    <div class="circle-progress"></div>
+                    <div class="circle-inner">
+                        <div class="days-count" id="daysCount">0</div>
+                        <div class="days-label" id="daysLabel">дней</div>
+                    </div>
+                </div>
+                <div class="countdown-note" id="countdownNote">Загрузка...</div>
+            </div>
+            
+            <div class="sidebar-header">
+                <div class="sidebar-title">Навигация</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item"><a href="https://online-edu.mirea.ru/" class="sidebar-link active"><i class="fas fa-home sidebar-icon"></i> Главная</a></li>
+                <li class="sidebar-item"><a href="https://lk.mirea.ru/learning_program/plan/" class="sidebar-link"><i class="fas fa-book sidebar-icon"></i> Мои курсы</a></li>
+                <li class="sidebar-item"><a href="https://www.mirea.ru/schedule/?ysclid=mie7gjuvkz817045686" class="sidebar-link"><i class="fas fa-calendar sidebar-icon"></i> Расписание</a></li>
+                <li class="sidebar-item"><a href="https://online-edu.mirea.ru/" class="sidebar-link"><i class="fas fa-tasks sidebar-icon"></i> Задания</a></li>
+                <li class="sidebar-item"><a href="https://lk.mirea.ru/learning/scores/" class="sidebar-link"><i class="fas fa-chart-line sidebar-icon"></i> Успеваемость</a></li>
+                <li class="sidebar-item"><a href="https://online-edu.mirea.ru/" class="sidebar-link"><i class="fas fa-cog sidebar-icon"></i> Настройки</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="content-header">
+                <div>
+                    <h2 class="section-title">Главная панель</h2>
+                    <p class="section-subtitle">Обзор вашей учебной деятельности</p>
+                </div>
+                <div class="content-actions">
+                    <button class="btn btn-primary" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i> Обновить
+                    </button>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="metric-card">
+                    <h3><i class="fas fa-tachometer-alt"></i> Учебная нагрузка</h3>
+                    <div class="metric-value" id="loadValue">0%</div>
+                    <div class="load-indicator">
+                        <div class="load-progress" id="loadProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="load-markers">
+                        <span>Низкая</span>
+                        <span>Оптимальная</span>
+                        <span>Высокая</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Общий прогресс</h3>
+                    <div class="metric-value" id="progressValue">0%</div>
+                    <p>Средний прогресс по всем курсам</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3><i class="fas fa-calendar-check"></i> Посещаемость</h3>
+                    <div class="metric-value" id="attendanceValue">0%</div>
+                    <p>За последний месяц</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3><i class="fas fa-clock"></i> Дедлайны</h3>
+                    <div class="metric-value" id="deadlinesValue">0</div>
+                    <p>На этой неделе</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 20px 0;">Мои курсы</h3>
+            <div class="courses-grid" id="coursesGrid">
+                <div class="loading-message">
+                    <i class="fas fa-spinner loading-spinner"></i> Загрузка курсов...
+                </div>
+            </div>
+
+            <div class="notifications">
+                <h3 style="margin-bottom: 20px;">Последние уведомления</h3>
+                <div id="notificationsList">
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-spinner loading-spinner"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Загрузка уведомлений</div>
+                            <div class="notification-desc">Пожалуйста, подождите...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">СДО РТУ МИРЭА by TRISKA</div>
+            <p class="footer-desc">Современная система дистанционного обучения Российского технологического университета МИРЭА</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+    <script>
+        const quotes = [
+            "ай ай ай ай убили негра убили негра убили.",
+            "*устанавливает Астра линукс*",
+            "СВЯЗЬ ЕСТЬ !",
+            "И на следующих, и до самой смерти буду участвовать в выборах, даже с кладбища буду участвовать, ещё и оттуда буду давать вам сигналы, что я там лежу",
+            "Успех — это способность двигаться от неудачи к неудаче, не теряя энтузиазма."
+        ];
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('quote-text').textContent = getRandomQuote();
+            updateSessionCountdown();
+        });
+
+        function updateSessionCountdown() {
+            const sessionStartDate = new Date('2025-12-26');
+            const now = new Date();
+            
+            const timeDiff = sessionStartDate.getTime() - now.getTime();
+            const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            
+            const daysCountElement = document.getElementById('daysCount');
+            const daysLabelElement = document.getElementById('daysLabel');
+            const countdownNoteElement = document.getElementById('countdownNote');
+            const circleProgress = document.querySelector('.circle-progress');
+            
+            if (daysCountElement) daysCountElement.textContent = Math.abs(daysLeft);
+            
+            if (daysLeft < 0) {
+                if (daysLabelElement) daysLabelElement.textContent = "дней прошло";
+                if (countdownNoteElement) countdownNoteElement.textContent = "Сессия завершена";
+            } else if (daysLeft === 0) {
+                if (daysLabelElement) daysLabelElement.textContent = "сессия сегодня";
+                if (countdownNoteElement) countdownNoteElement.textContent = "Удачи!";
+            } else {
+                if (daysLabelElement) daysLabelElement.textContent = getDaysLabel(daysLeft);
+                if (countdownNoteElement) countdownNoteElement.textContent = `Начало: ${formatDate(sessionStartDate)}`;
+            }
+            
+            const maxDaysForProgress = 60;
+            const progressPercentage = Math.min(100, Math.max(0, ((maxDaysForProgress - Math.abs(daysLeft)) / maxDaysForProgress) * 100));
+            if (circleProgress) {
+                circleProgress.style.background = `conic-gradient(var(--accent-color) 0% ${progressPercentage}%, #e9ecef ${progressPercentage}% 100%)`;
+            }
+        }
+        
+        function getDaysLabel(days) {
+            if (days % 10 === 1 && days % 100 !== 11) {
+                return "день";
+            } else if ([2, 3, 4].includes(days % 10) && ![12, 13, 14].includes(days % 100)) {
+                return "дня";
+            } else {
+                return "дней";
+            }
+        }
+        
+        function formatDate(date) {
+            return date.toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long'
+            });
+        }
+
+        window.refreshAllData = function() {
+            if (window.sdoApp && typeof window.sdoApp.refreshData === 'function') {
+                window.sdoApp.refreshData();
+            }
+            
+            document.getElementById('quote-text').textContent = getRandomQuote();
+            updateSessionCountdown();
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', window.refreshAllData);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "dashboard": {
+    "currentLoad": 75,
+    "burnoutRisk": 25,
+    "attendance": 92,
+    "overallProgress": 67,
+    "weeklyHours": 34,
+    "deadlinesThisWeek": 3
+  },
+  "timeline": {
+    "events": [
+      {
+        "date": "2024-12-10",
+        "title": "Контрольная - Математический анализ",
+        "type": "exam",
+        "priority": "high"
+      },
+      {
+        "date": "2024-12-15",
+        "title": "Лабораторная - Физика",
+        "type": "lab", 
+        "priority": "medium"
+      },
+      {
+        "date": "2024-12-20",
+        "title": "Проект - Программирование",
+        "type": "project",
+        "priority": "high"
+      }
+    ]
+  }
+}

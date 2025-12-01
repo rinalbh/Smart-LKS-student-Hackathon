@@ -1,0 +1,51 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Математический анализ",
+      "shortName": "Матан",
+      "instructor": "Кузьмина Л.И.",
+      "progress": 85,
+      "status": "Активный",
+      "modules": "1,2,3,4",
+      "deadlines": [
+        {"name": "Контрольная 1", "date": "2024-12-10", "completed": true},
+        {"name": "Курсовая работа", "date": "2024-12-25", "completed": false}
+      ]
+    },
+    {
+      "id": 2, 
+      "name": "Языки программирования",
+      "shortName": "Программирование",
+      "instructor": "Булгаков С.А.",
+      "progress": 72,
+      "status": "Активный", 
+      "modules": "1,2,3,4",
+      "deadlines": [
+        {"name": "Проект", "date": "2024-12-20", "completed": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Физика", 
+      "shortName": "Физика",
+      "instructor": "Попова Е.А.",
+      "progress": 45,
+      "status": "Активный",
+      "modules": "3,4",
+      "deadlines": [
+        {"name": "Лабораторная 3", "date": "2024-12-15", "completed": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Информатика",
+      "shortName": "Информатика", 
+      "instructor": "Шейкин В.В.",
+      "progress": 100,
+      "status": "Завершен",
+      "modules": "1,2",
+      "deadlines": []
+    }
+  ]
+}
